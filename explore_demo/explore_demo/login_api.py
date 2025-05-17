@@ -2,7 +2,7 @@
 import frappe
 from frappe.auth import LoginManager
 
-
+# redirect site api
 # explore_demo.explore_demo.login_api.token_login
 @frappe.whitelist(allow_guest=True)
 def token_login(token):

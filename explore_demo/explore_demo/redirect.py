@@ -3,6 +3,8 @@ import frappe
 import secrets
 import requests
 
+
+# Api where the website page is developed
 @frappe.whitelist()
 def generate_redirect_url():
     token = secrets.token_urlsafe(32)
@@ -21,7 +23,7 @@ def generate_redirect_url():
 
 
 
-# In kingstech.com site
+# API redirect site
 # explore_demo.explore_demo.redirect.store_token
 @frappe.whitelist(allow_guest=True)
 def store_token(token, user):
