@@ -6,7 +6,10 @@
  "engine": "InnoDB",
  "field_order": [
   "site_name",
-  "user_id"
+  "user_id",
+  "api_key",
+  "api_secret",
+  "password"
  ],
  "fields": [
   {
@@ -18,13 +21,28 @@
    "fieldname": "user_id",
    "fieldtype": "Data",
    "label": "User ID"
+  },
+  {
+   "fieldname": "api_key",
+   "fieldtype": "Data",
+   "label": "API Key"
+  },
+  {
+   "fieldname": "api_secret",
+   "fieldtype": "Password",
+   "label": "API Secret"
+  },
+  {
+   "fieldname": "password",
+   "fieldtype": "Password",
+   "label": "Password"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2025-05-17 17:20:33.453753",
+ "modified": "2025-05-18 07:36:13.467967",
  "modified_by": "Administrator",
  "module": "Explore Demo",
  "name": "Explore Demo Settings",

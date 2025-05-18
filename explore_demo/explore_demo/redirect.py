@@ -1,30 +1,50 @@
-# In fossdemo.com site
 import frappe
-import secrets
 import requests
 
-
-# Api where the website page is developed
 @frappe.whitelist()
 def generate_redirect_url():
-    token = secrets.token_urlsafe(32)
-    # Store token and user in kingstech.com Redis
+    # try:
     doc = frappe.get_doc("Explore Demo Settings")
+    
     if not doc.site_name:
         frappe.throw("Site Name is not set in explore demo settings")
+    
+    # Prepare API credentials
+    api_key = doc.api_key
+    api_secret = doc.get_password('api_secret')
+    
+    # Construct the API URL
+    url = f"{doc.site_name}/api/method/explore_demo.explore_demo.login_api.login"
+    
+    headers = {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
 
-    requests.post(f"{doc.site_name}/api/method/explore_demo.explore_demo.redirect.store_token", json={
-        "token": token,
-        "user": doc.user_id
-    })
+    payload = {
+        "usr" : doc.user_id,
+        "pwd" : doc.get_password("password")
+    }
+    
+    # Make the request
+    response = requests.post(url, json=payload, headers=headers)
 
-    return f"{doc.site_name}/api/method/explore_demo.explore_demo.login_api.token_login?token={token}"
-
-
-
-
-# API redirect site
-# explore_demo.explore_demo.redirect.store_token
-@frappe.whitelist(allow_guest=True)
-def store_token(token, user):
-    frappe.cache().set_value(f"login_token:{token}", user, expires_in_sec=60)
+    return response
+    # Check for successful response
+    if response:
+        return {
+            "site_url": doc.site_name,
+            "success": 1
+        }
+    else:
+        return {
+            "success": 0,
+            "message": f"API request failed with status {response.status_code}",
+            "error": response.text
+        }
+            
+    # except Exception as e:
+    #     return {
+    #         "success": 0,
+    #         "message": str(e)
+    #     }
