@@ -1,39 +1,34 @@
 {
  "actions": [],
  "allow_rename": 1,
- "creation": "2025-05-16 15:19:36.135621",
+ "creation": "2025-05-18 10:06:04.896093",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "site_name",
-  "user_id",
-  "password"
+  "path_to_database",
+  "enable"
  ],
  "fields": [
   {
-   "fieldname": "site_name",
+   "fieldname": "path_to_database",
    "fieldtype": "Data",
-   "label": "Site Name"
+   "label": "Path To Database"
   },
   {
-   "fieldname": "user_id",
-   "fieldtype": "Data",
-   "label": "User ID"
-  },
-  {
-   "fieldname": "password",
-   "fieldtype": "Password",
-   "label": "Password"
+   "default": "0",
+   "fieldname": "enable",
+   "fieldtype": "Check",
+   "label": "Enable"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2025-05-18 09:44:12.914841",
+ "modified": "2025-05-18 10:06:40.813049",
  "modified_by": "Administrator",
  "module": "Explore Demo",
- "name": "Explore Demo Settings",
+ "name": "Auto Restore",
  "owner": "Administrator",
  "permissions": [
   {
